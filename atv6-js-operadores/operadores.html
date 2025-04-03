@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Operadores em JavaScript</title>
+</head>
+
+<body>
+
+    <h1>Exercícios de Operadores em JavaScript</h1>
+    <script>
+
+        // Exercícios de fixação de Operadores.
+
+        // 1. Soma
+        // Crie um script que receba dois números e exiba a soma deles.
+
+        // 2. Subtração
+        // Crie um script que receba dois números e exiba a diferença entre eles (primeiro - segundo).
+
+        // 3. Multiplicação
+        // Crie um script que receba dois números e exiba o resultado da multiplicação (primeiro * segundo).
+
+        // 4 Divisão. 
+        // Crie um script que receba dois números e exiba o resultado da divisão (primeiro ÷ segundo).
+
+        // 5 Módulo. 
+        // Crie um script que receba dois números e exiba o resto da divisão entre eles (primeiro % segundo).
+
+        // 6 Sucessor. 
+        // Crie um script que receba um número e mostre seu sucessor.
+
+        // 7. Antecessor
+        // Crie um script que receba um número e mostre seu antecessor.
+
+        // 8. Soma
+        // Crie um script que receba três números e exiba a soma de todos.
+
+        // 9. Média
+        // Crie um script que receba três números e calcule a média deles.
+
+        // 10. Área do círculo
+        // Crie um script que calcule a área de um círculo dado o valor de seu raio (fórmula: A = π (3.14) * r²).
+
+        // 11. Verdadeiro ou Falso
+        // Crie um script que leia a idade de uma pessoa e exiba e retorno (true or false).
+
+        // 12. Verdadeiro ou Falso
+        // Crie um script que receba um número e exiba se ele é positivo, negativo ou zero (true or false) de cada um dos 3 tipos.
+
+        // 13. Verdadeiro ou Falso
+        // Crie um script que verifique se um número é par (true or false).
+
+        // 14. Verdadeiro ou Falso
+        // Crie um script que receba dois números e exiba se o primeiro é maior que o segundo. (true or false).
+
+        // 15. Verdadeiro ou Falso
+        // Crie um script que verifique se um número está entre 10 e 20. (true or false).
+
+
+        console.log("======= INÍCIO DOS EXERCÍCIOS =======");
+
+        // 1) Soma de dois números
+        var numero1Ex1 = parseFloat(prompt("Exercício 1 - Digite o primeiro número:"));
+        var numero2Ex1 = parseFloat(prompt("Exercício 1 - Digite o segundo número:"));
+        var soma = numero1Ex1 + numero2Ex1;
+        console.log(`A soma de ${numero1Ex1} e ${numero2Ex1} é: ${soma}`);
+
+        // 2) Diferença entre dois números
+        var numero1Ex2 = parseFloat(prompt("Exercício 2 - Digite o primeiro número:"));
+        var numero2Ex2 = parseFloat(prompt("Exercício 2 - Digite o segundo número:"));
+        var diferenca = numero1Ex2 - numero2Ex2;
+        console.log(`A diferença entre ${numero1Ex2} e ${numero2Ex2} é: ${diferenca}`);
+
+        // 3) Multiplicação de dois números
+        var numero1Ex3 = parseFloat(prompt("Exercício 3 - Digite o primeiro número:"));
+        var numero2Ex3 = parseFloat(prompt("Exercício 3 - Digite o segundo número:"));
+        var multiplicacao = numero1Ex3 * numero2Ex3;
+        console.log(`A multiplicação de ${numero1Ex3} e ${numero2Ex3} é: ${multiplicacao}`);
+
+        // 4) Divisão de dois números
+        var numero1Ex4 = parseFloat(prompt("Exercício 4 - Digite o primeiro número:"));
+        var numero2Ex4 = parseFloat(prompt("Exercício 4 - Digite o segundo número:"));
+        var divisao = numero1Ex4 / numero2Ex4;
+        console.log(`A divisão de ${numero1Ex4} por ${numero2Ex4} é: ${divisao}`);
+
+        // 5) Resto da divisão entre dois números
+        var numero1Ex5 = parseFloat(prompt("Exercício 5 - Digite o primeiro número:"));
+        var numero2Ex5 = parseFloat(prompt("Exercício 5 - Digite o segundo número:"));
+        var resto = numero1Ex5 % numero2Ex5;
+        console.log(`O resto da divisão de ${numero1Ex5} por ${numero2Ex5} é: ${resto}`);
+
+        // 6) Incremento em 1
+        var numeroEx6 = parseFloat(prompt("Exercício 6 - Digite um número:"));
+        var incremento = numeroEx6 + 1;
+        console.log(`${numeroEx6} aumentado em 1 é: ${incremento}`);
+
+        // 7) Decremento em 1
+        var numeroEx7 = parseFloat(prompt("Exercício 7 - Digite um número:"));
+        var decremento = numeroEx7 - 1;
+        console.log(`${numeroEx7} diminuído em 1 é: ${decremento}`);
+
+        // 8) Soma de três números
+        var numero1Ex8 = parseFloat(prompt("Exercício 8 - Digite o primeiro número:"));
+        var numero2Ex8 = parseFloat(prompt("Exercício 8 - Digite o segundo número:"));
+        var numero3Ex8 = parseFloat(prompt("Exercício 8 - Digite o terceiro número:"));
+        var somaEx8 = numero1Ex8 + numero2Ex8 + numero3Ex8;
+        console.log(`A soma de ${numero1Ex8}, ${numero2Ex8} e ${numero3Ex8} é: ${somaEx8}`);
+
+        // 9) Média de três números
+        var numero1Ex9 = parseFloat(prompt("Exercício 9 - Digite o primeiro número:"));
+        var numero2Ex9 = parseFloat(prompt("Exercício 9 - Digite o segundo número:"));
+        var numero3Ex9 = parseFloat(prompt("Exercício 9 - Digite o terceiro número:"));
+        var media = (numero1Ex9 + numero2Ex9 + numero3Ex9) / 3;
+        console.log(`A média de ${numero1Ex9}, ${numero2Ex9} e ${numero3Ex9} é: ${media}`);
+
+        // 10) Área de um círculo
+        var raio = parseFloat(prompt("Exercício 10 - Digite o raio do círculo:"));
+        var area = Math.PI * raio * raio;
+        console.log(`A área do círculo com raio ${raio} é: ${area.toFixed(2)}`);
+
+        // 11) Verificar idade
+        var idade = parseFloat(prompt("Exercício 11 - Digite sua idade:"));
+        var ehMaiorDeIdade = idade >= 18;
+        console.log(`É maior de idade: ${ehMaiorDeIdade}`);
+
+        // 12) Verificar se é positivo, negativo ou zero
+        var numeroEx12 = parseFloat(prompt("Exercício 12 - Digite um número:"));
+        var ehPositivo = numeroEx12 > 0;
+        var ehNegativo = numeroEx12 < 0;
+        var ehZero = numeroEx12 === 0;
+        console.log(`O número ${numeroEx12} é positivo: ${ehPositivo}`);
+        console.log(`O número ${numeroEx12} é negativo: ${ehNegativo}`);
+        console.log(`O número ${numeroEx12} é zero: ${ehZero}`);
+
+        // 13) Verificar se é par
+        var numeroEx13 = parseFloat(prompt("Exercício 13 - Digite um número:"));
+        var ehPar = numeroEx13 % 2 === 0;
+        console.log(`O número ${numeroEx13} é par: ${ehPar}`);
+
+        // 14) Verificar se o primeiro é maior que o segundo
+        var numero1Ex14 = parseFloat(prompt("Exercício 14 - Digite o primeiro número:"));
+        var numero2Ex14 = parseFloat(prompt("Exercício 14 - Digite o segundo número:"));
+        var primeiroMaior = numero1Ex14 > numero2Ex14;
+        console.log(`${numero1Ex14} é maior que ${numero2Ex14}: ${primeiroMaior}`);
+
+        // 15) Verificar se está entre 10 e 20
+        var numeroEx15 = parseFloat(prompt("Exercício 15 - Digite um número:"));
+        var entreIntervalo = numeroEx15 >= 10 && numeroEx15 <= 20;
+        console.log(`O número ${numeroEx15} está entre 10 e 20: ${entreIntervalo}`);
+
+        console.log("======= FIM DOS EXERCÍCIOS =======");
+
+    </script>
+</body>
+
+</html>
