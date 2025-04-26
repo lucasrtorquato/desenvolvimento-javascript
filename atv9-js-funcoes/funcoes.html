@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- FUNÇÃO PARA VERIFICAR SE UM NÚMERO É PAR OU IMPAR -->
+
+    <script>
+
+        function parImpar(numero) {
+            if (numero % 2 == 0) {
+                console.log(`O número ${numero} é par`);
+            } else {
+                console.log(`O número ${numero} é impar`);
+            }
+        }
+
+        parImpar(4);
+        parImpar(5);
+
+        // gerar tabuada, lista array [10, 5, 3, 8, 2]
+
+        function gerarTabuada(numeros){
+            for (var i = 0; i < numeros.length; i++){
+                console.log(`Tabuada do ${numeros[i]}`);
+                for(var j = 1; j <= 10; j++){
+                    console.log(`${numeros[i]} x ${j} = ${numeros[i] * j}`)
+                }
+            }
+
+        }
+
+        gerarTabuada([10,5,3,8,2,3,5,8,3,1,7,8,9])
+
+        //IMC, RECEBER PESO E ALTURA E CALCULAR IMC
+        //VERIFICAR SE A PESSOA ESTÁ ABAIXO DO PESO, PESO NORMAL, SOBREPESO OU OBESIDADE.
+        //ABAIXO 18.5 => ABAIXO DO PESO
+        // ENTRE 18.5 E 24.9 => PESO NORMAL
+        // IGUAL OU ACIMA DE 25 E ABAIXO DE 29.9 => SOBREPESO
+        // ACIMA DE 29.9 => OBESIDADE
+
+        function IMC(peso, altura){
+            var imc = peso / (altura ** 2);
+            console.log("IMC: ", imc);
+            if(imc < 18.5){
+                console.log("Abaixo do Peso!");
+            //} else if(imc >= 18.5 && imc < 25){
+            } else if(imc >= 18.5 && imc <= 24.9){
+                console.log("Peso Normal!");
+            } else if(imc >= 25 && imc < 29.9){
+                console.log("Sobrepeso!");
+            } else{
+                console.log("Obesidade");
+            }
+        }
+
+        IMC(80, 1.80)
+        IMC(150, 1.90)
+
+        // verificar se é bissexto ou não!
+
+        function anoBissexto(ano){
+            if ((ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0){
+                console.log(`O ano ${ano} é bissexto`);
+            }else{
+                console.log(`O ano ${ano} não é bissexto`);
+            }
+        }
+
+        anoBissexto(2023);
+        anoBissexto(2024);
+        anoBissexto(2025);
+  
+    </script>
+
+</body>
+
+</html>

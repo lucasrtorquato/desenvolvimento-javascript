@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escopo e Bibliotecas</title>
+</head>
+<body>
+    <h1>Escopo e Bibliotecas</h1>
+
+    <script>
+
+        function exemploVar(){
+            var x = 10;
+            console.log("Antes do if:", x);
+            if (1 == 1){
+                var x = 20;
+                console.log("Dentro do if: ", x);
+            }
+            console.log("Depois, Fora do if:", x);
+        }
+
+        exemploVar();
+
+        function exemploLet(){
+            let x = 10;
+            console.log("Antes do if:", x);
+            if (1 == 1){
+                let x = 20;
+                console.log("Dentro do if: ", x);
+            }
+            console.log("Depois, Fora do if:", x);
+        }
+
+        exemploLet();
+
+        var nome = "Lucas";
+        var nome = "Maria";
+        let idade = 15;
+        idade = 16;
+        //let idade = 16;
+
+        const pi = 3.1415;
+        //const pi = 5;
+        //pi = 3.15;
+
+        const pessoa = {"nome": "Maria"}
+        console.log(pessoa);
+        pessoa.nome = "Lucas";
+        console.log(pessoa);
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -56,6 +56,25 @@
             console.log("até o ano que vem!")
         }
 
+        //nota >= 7 e as faltas <= 4
+        function verificarAprovacao(n1,n2,n3,numFaltas){
+            var media = (n1+n2+n3)/3
+            if (media >= 7 && numFaltas <= 4){
+                return "Aprovado";
+            }
+            else{
+                return "Reprovado";
+            }
+        }
+
+        console.log("Situação: ", verificarAprovacao(10,8,5,3));
+        console.log("Situação: ", verificarAprovacao(10,8,5,5));
+        console.log("Situação: ", verificarAprovacao(5,4,5,0));
+
+
+
+
+
 
 
 
