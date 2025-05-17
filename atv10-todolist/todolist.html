@@ -20,6 +20,15 @@
     <ul class="list-group mb-3" id="listaTarefas"></ul>
 
     <p class="text-end fw-bold">Total de tarefas: <span id="contador">0</span></p>
+
+    <div class="d-flex justify-content-between mt-4">
+      <div class="upload-area">
+        <input type="file" name="upload" id="upload" accept=".json" class="d-none" onchange="uploadJson(arquivo)">
+        <button id="btnUpload" class="btn btn-success" onclick="document.getElementById('upload').click()">Upload Json</button>
+      </div>
+      <button id="btnDownload" onclick="downloadJson()" class="btn btn-info">Download Json</button>
+    </div>
+
   </div>
 
   <script>
@@ -45,8 +54,9 @@
       atualizarLista();
     }
 
-    function removerTarefa(){
-
+    function removerTarefa(item){
+      tarefas.splice(item,1);
+      atualizarLista();
     }
 
     function atualizarLista(){
@@ -60,26 +70,51 @@
         item.innerHTML = `
           ${tarefas[i]}
           <div class="float-end">
-            <button class="btn btn-sm btn-warning" onclick="editarTarefa()">Editar</button>
-            <button class="btn btn-sm btn-danger" onclick="removerTarefa()">Remover</button>
+            <button class="btn btn-sm btn-warning" onclick="editarTarefa(${i})">Editar</button>
+            <button class="btn btn-sm btn-danger" onclick="removerTarefa(${i})">Remover</button>
           </div>
         `;
 
         lista.appendChild(item);
       }
       atualizarContador();
+      salvarLocalStorage();
     }
 
-    function editarTarefa(){
+    function editarTarefa(item){
+      let tarefaEditada = prompt("Editar a tarefa: ", tarefas[item]);
 
+      if (tarefaEditada.trim() == ""){
+        alert("O texto da tarefa não pode ser vazio!");
+        return;
+      }
+
+      if (tarefas.includes(tarefaEditada)){
+        alert("Tarefa já existe na lista!");
+        return;
+      }
+
+      tarefas[item] = tarefaEditada;
+      atualizarLista();
     }
 
     function atualizarContador(){
-
+      document.getElementById("contador").textContent = tarefas.length;
     }
 
+    function salvarLocalStorage(){
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    }
 
+    function carregarLocalStorage(){
+      let dados = localStorage.getItem("tarefas");
+      if(dados){
+        tarefas = JSON.parse(dados);
+        atualizarLista();
+      }
+    }
 
+    carregarLocalStorage();
 
 
 
