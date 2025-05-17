@@ -23,8 +23,9 @@
 
     <div class="d-flex justify-content-between mt-4">
       <div class="upload-area">
-        <input type="file" name="upload" id="upload" accept=".json" class="d-none" onchange="uploadJson(arquivo)">
-        <button id="btnUpload" class="btn btn-success" onclick="document.getElementById('upload').click()">Upload Json</button>
+        <input type="file" name="upload" id="upload" accept=".json" class="d-none" onchange="uploadJson(event)">
+        <button id="btnUpload" class="btn btn-success" onclick="document.getElementById('upload').click()">Upload
+          Json</button>
       </div>
       <button id="btnDownload" onclick="downloadJson()" class="btn btn-info">Download Json</button>
     </div>
@@ -35,16 +36,16 @@
 
     let tarefas = [];
 
-    function adicionarTarefa(){
+    function adicionarTarefa() {
       let input = document.getElementById("tarefaInput");
       let texto = input.value.trim();
 
-      if (texto === ""){
+      if (texto === "") {
         alert("Digite um tarefa válida!");
         return;
       }
 
-      if (tarefas.includes(texto)){
+      if (tarefas.includes(texto)) {
         alert("Essa tarefa já foi adicionada!");
         return;
       }
@@ -54,16 +55,16 @@
       atualizarLista();
     }
 
-    function removerTarefa(item){
-      tarefas.splice(item,1);
+    function removerTarefa(item) {
+      tarefas.splice(item, 1);
       atualizarLista();
     }
 
-    function atualizarLista(){
+    function atualizarLista() {
       let lista = document.getElementById("listaTarefas");
       lista.innerHTML = "";
-      
-      for (let i = 0; i < tarefas.length; i++){
+
+      for (let i = 0; i < tarefas.length; i++) {
         let item = document.createElement("li");
         item.className = "list-group-item";
 
@@ -79,17 +80,18 @@
       }
       atualizarContador();
       salvarLocalStorage();
+      atualizarBotoes();
     }
 
-    function editarTarefa(item){
+    function editarTarefa(item) {
       let tarefaEditada = prompt("Editar a tarefa: ", tarefas[item]);
 
-      if (tarefaEditada.trim() == ""){
+      if (tarefaEditada.trim() == "") {
         alert("O texto da tarefa não pode ser vazio!");
         return;
       }
 
-      if (tarefas.includes(tarefaEditada)){
+      if (tarefas.includes(tarefaEditada)) {
         alert("Tarefa já existe na lista!");
         return;
       }
@@ -98,26 +100,105 @@
       atualizarLista();
     }
 
-    function atualizarContador(){
+    function atualizarContador() {
       document.getElementById("contador").textContent = tarefas.length;
     }
 
-    function salvarLocalStorage(){
+    function salvarLocalStorage() {
       localStorage.setItem("tarefas", JSON.stringify(tarefas));
     }
 
-    function carregarLocalStorage(){
+    function carregarLocalStorage() {
       let dados = localStorage.getItem("tarefas");
-      if(dados){
+      if (dados) {
         tarefas = JSON.parse(dados);
         atualizarLista();
       }
     }
 
+    function atualizarBotoes() {
+      let btnUpload = document.getElementById("btnUpload");
+      let btnDownload = document.getElementById("btnDownload");
+
+      if (tarefas.length > 0) {
+        btnDownload.disabled = false;
+        btnUpload.disabled = true;
+      } else {
+        btnDownload.disabled = true;
+        btnUpload.disabled = false;
+      }
+
+    }
+
+    function downloadJson() {
+      if (tarefas.length == 0) {
+        alert("Não exitem tarefas para baixar!");
+        return;
+      }
+
+      let dataStr = JSON.stringify(tarefas);
+      //cria o arquivo temp
+      let blob = new Blob([dataStr], { type: "application/json" });
+      let url = URL.createObjectURL(blob);
+      //cria o link para baixar o arquivo
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "tarefas.json";
+      a.click();
+      //remove link e url do arquivo
+      URL.revokeObjectURL(url);
+      a.remove();
+    }
+
+    function uploadJson(arquivo) {
+
+      let file = arquivo.target.files[0];
+      if (!file){
+        alert("Arquivo não existe");
+        return;
+      }
+
+      let reader = new FileReader();
+
+      reader.onload = function (e){
+
+        try{
+
+          let dados = JSON.parse(e.target.result);
+
+          if(!Array.isArray(dados)){
+            alert("Arquivo Json inválido!");
+            return;
+          }
+
+          for (let tarefa of dados){
+            if(typeof tarefa != "string"){
+              alert("Arquivo Json inválido! Todas as tarefas devem ser texto!");
+              return;
+            }
+          }
+
+          if (tarefas.length > 0){
+            alert("Para o upload funcionar, a lista tem que estar vazia!");
+            return;
+          }
+
+          tarefas = dados;
+          atualizarLista();
+        } catch(error){
+          alert("Erro ao ler o arquivo JSON: " + error.message);
+        }
+
+      }
+
+      reader.readAsText(file);
+      arquivo.target.value = "";
+
+    }
+
+
     carregarLocalStorage();
-
-
-
+    atualizarBotoes();
 
 
 
