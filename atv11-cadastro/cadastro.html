@@ -31,7 +31,7 @@
           <input type="text" id="cep" class="form-control" placeholder="CEP">
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-secondary w-100">Buscar CEP</button>
+          <button type="button" class="btn btn-secondary w-100" onclick="buscarCEP()">Buscar CEP</button>
         </div>
         <div class="col-md-7">
           <input type="text" id="rua" class="form-control" placeholder="Rua">
@@ -126,6 +126,29 @@
     }
 
     function buscarCEP(){
+      let cep = document.getElementById("cep").value;
+
+      if(cep.length != 8 && cep.length != 9){
+        alert("CEP inválido. Digite novamente!");
+        return;
+      }
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.json())
+        .then(dados => {
+
+          if (dados.erro){
+            alert("CEP não encontrado");
+            return;
+          }
+
+          document.getElementById("rua").value = dados.logradouro;
+          document.getElementById("bairro").value = dados.bairro;
+          document.getElementById("cidade").value = dados.localidade;
+          document.getElementById("estado").value = dados.uf;
+
+        }).catch(() => alert("Erro ao buscar CEP!"));
+
 
     }
 
