@@ -53,8 +53,8 @@
         </div>
       </div>
 
-      <button class="btn btn-success" type="button">Salvar</button>
-      <button class="btn btn-warning" type="button">Cancelar</button>
+      <button class="btn btn-success" type="button" onclick="salvarUsuario()">Salvar</button>
+      <button class="btn btn-warning" type="button" onclick="cancelar()">Cancelar</button>
     </form>
 
     <hr>
@@ -112,9 +112,17 @@
         estado: document.getElementById('estado').value
       }
 
+      let indice = document.getElementById("indice").value;
 
+      if(indice == ""){
+        usuarios.push(usuario);
+      }else{
+        usuarios[indice] = usuario;
+      }
 
-
+      localStorage.setItem("usuarios",JSON.stringify(usuarios));
+      listarUsuarios();
+      cancelar();
     }
 
     function buscarCEP(){
@@ -122,20 +130,61 @@
     }
 
     function listarUsuarios(){
+      let tbody = document.getElementById("tabelaUsuarios");
+      tbody.innerHTML = "";
+
+      for (let i = 0; i < usuarios.length; i++){
+        let tr = document.createElement("tr");
+        let u = usuarios[i];
+        tr.innerHTML = `
+          <td>${u.nome}</td>
+          <td>${u.email}</td>
+          <td>${u.telefone}</td>
+          <td>${u.cep}</td>
+          <td>${u.rua}</td>
+          <td>${u.numero}</td>
+          <td>${u.bairro}</td>
+          <td>${u.cidade}</td>
+          <td>${u.estado}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" onclick="editarUsuario(${i})">Editar</button>
+            <button class="btn btn-sm btn-danger" onclick="excluirUsuario(${i})">Excluir</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
 
     }
 
-    function editarUsuario(){
-
+    function editarUsuario(i){
+      let u = usuarios[i];
+      document.getElementById("nome").value = u.nome;
+      document.getElementById("email").value = u.email;
+      document.getElementById('telefone').value = u.telefone;
+      document.getElementById('cep').value = u.cep;
+      document.getElementById('rua').value = u.rua;
+      document.getElementById('numero').value = u.numero;
+      document.getElementById('bairro').value = u.bairro;
+      document.getElementById('cidade').value = u.cidade;
+      document.getElementById('estado').value = u.estado;
+      document.getElementById('indice').value = i;
     }
 
-    function excluirUsuario(){
-
+    function excluirUsuario(i){
+      if (confirm("Deseja realmente excluir o usuário?")){
+        usuarios.splice(i,1);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        listarUsuarios();
+      }
+      cancelar();
     }
 
     function cancelar(){
-
+      document.getElementById("formUsuario").reset();
+      document.getElementById("indice").value = "";
     }
+
+    listarUsuarios();
 
 
 
